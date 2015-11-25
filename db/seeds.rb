@@ -5,3 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+category_list = %w(Security Cloud Mobility Strage CDIA)
+category_list.each { |name| Category.create(name: name) }
