@@ -4,7 +4,7 @@ ruby '2.2.1'
 
 gem 'rails', '4.2.1'
 gem 'pg'
-gem 'mysql2'
+gem 'mysql2', '~> 0.3.20'
 gem 'puma'
 
 #--------------------------------------------------------------------------------
@@ -38,7 +38,7 @@ gem 'devise'
 # gem 'default_value_for', git: 'git://github.com/tsmango/default_value_for.git'
 # gem 'squeel'
 # gem 'acts_as_list'
-# gem 'enumerize'
+gem 'enumerize'
 
 #--------------------------------------------------------------------------------
 # Operation

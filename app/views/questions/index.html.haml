@@ -1,0 +1,27 @@
+%h1 Listing questions
+
+%table
+  %thead
+    %tr
+      %th Num of exam
+      %th Question path
+      %th Description path
+      %th Exam
+      %th
+      %th
+      %th
+
+  %tbody
+    - @questions.each do |question|
+      %tr
+        %td= question.num_of_exam
+        %td= question.question_path
+        %td= question.description_path
+        %td= question.exam
+        %td= link_to 'Show', question
+        %td= link_to 'Edit', edit_question_path(question)
+        %td= link_to 'Destroy', question, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Question', new_question_path

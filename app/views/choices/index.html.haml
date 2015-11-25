@@ -1,0 +1,25 @@
+%h1 Listing choices
+
+%table
+  %thead
+    %tr
+      %th Content
+      %th Collect
+      %th Question
+      %th
+      %th
+      %th
+
+  %tbody
+    - @choices.each do |choice|
+      %tr
+        %td= choice.content
+        %td= choice.collect
+        %td= choice.question
+        %td= link_to 'Show', choice
+        %td= link_to 'Edit', edit_choice_path(choice)
+        %td= link_to 'Destroy', choice, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Choice', new_choice_path
