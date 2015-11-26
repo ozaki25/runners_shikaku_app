@@ -1,8 +1,9 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: %i(show edit update destroy)
+  before_action :set_exam
 
   def index
-    @questions = Question.all
+    @questions = @exam.questions
   end
 
   def show
@@ -17,11 +18,10 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params)
-      if @question.save
-        redirect_to @question, notice: 'Question was successfully created.'
-      else
-        render :new
-      end
+    if @question.save
+      redirect_to @question, notice: 'Question was successfully created.'
+    else
+      render :new
     end
   end
 
@@ -41,6 +41,10 @@ class QuestionsController < ApplicationController
   private
   def set_question
     @question = Question.find(params[:id])
+  end
+
+  def set_exam
+    @exam = Exam.find(params[:exam_id])
   end
 
   def question_params
