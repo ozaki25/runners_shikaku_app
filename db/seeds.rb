@@ -10,6 +10,6 @@ category_list = %w(Security Cloud Mobility Strage CDIA)
 category_list.each do |name|
   category = Category.create(name: name)
   (1..2).each do |i|
-    exam = category.exams.create(time_of_category: i + 1)
+    exam = category.exams.create(time_of_category: i)
   end
 end
