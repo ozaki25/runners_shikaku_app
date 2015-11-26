@@ -5,5 +5,5 @@
       %li.list-group-item
         = category.name
         - category.exams.each do |exam|
-          = link_to "第#{exam.time_of_category}回", exam_questions_path(exam), class: 'link_to_exam'
+          = link_to "第#{exam.time_of_category}回", exam, class: 'link_to_exam'
     

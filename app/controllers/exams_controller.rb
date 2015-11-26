@@ -1,8 +1,11 @@
 class ExamsController < ApplicationController
-  before_action :set_exam, only: %i(edit update destroy)
+  before_action :set_exam, only: %i(show edit update destroy)
 
   def index
     @exams = Exam.all
+  end
+
+  def show
   end
 
   def new

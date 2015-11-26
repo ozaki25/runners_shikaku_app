@@ -11,5 +11,8 @@ category_list.each do |name|
   category = Category.create(name: name)
   (1..2).each do |i|
     exam = category.exams.create(time_of_category: i)
+    (1..2).each do |j|
+      exam.questions.create(num_of_exam: j, question_path: "/images/questions/categories/#{category.id}/exams/#{i}/questions/#{j}.jpg", description_path: "/images/descriptions/categories/#{category.id}/exams/#{i}/questions/#{j}.jpg");
+    end
   end
 end
