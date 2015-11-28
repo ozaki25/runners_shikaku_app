@@ -31,14 +31,14 @@ class Trimming
         i = 1
         Dir.glob(input_path(category, count)) do |input|
           size = if count == 1
-                   '750x70+20+145'
+                   '755x70+20+145'
                  elsif count == 2
                    if i < 15
-                     '750x70+20+160'
+                     '755x70+20+160'
                    elsif i >= 15 && i < 37
-                     '750x70+20+140'
+                     '755x70+20+140'
                    else #i >= 37
-                     '750x70+25+125'
+                     '755x70+25+125'
                    end
                  end
           output = output_path(category, count, i)
@@ -55,7 +55,7 @@ class Trimming
         i = 1
         Dir.glob(input_path(category, count)) do |input|
           output = output_path(category, count, i)
-          size = '750x75+15+120'
+          size = '755x75+15+120'
           trimming(input, output, size)
           i = i + 1
         end
@@ -68,7 +68,7 @@ class Trimming
         i = 1
         Dir.glob(input_path(category, count)) do |input|
           output = output_path(category, count, i)
-          size = '750x75+15+120'
+          size = '755x75+15+120'
           trimming(input, output, size)
           i = i + 1
         end
@@ -81,7 +81,7 @@ class Trimming
         i = 1
         Dir.glob(input_path(category, count)) do |input|
           output = output_path(category, count, i)
-          size = '750x75+15+120'
+          size = '755x75+15+120'
           trimming(input, output, size)
           i = i + 1
         end
@@ -94,7 +94,7 @@ class Trimming
         i = 1
         Dir.glob(input_path(category, count)) do |input|
           output = output_path(category, count, i)
-          size = '750x75+15+120'
+          size = '755x75+15+120'
           trimming(input, output, size)
           i = i + 1
         end
