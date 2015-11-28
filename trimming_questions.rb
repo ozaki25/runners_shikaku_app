@@ -11,9 +11,9 @@ class Trimming
     def excute(path)
       set_base_path(path)
       security
-      #strage
-      #mobility
       #cloud
+      #mobility
+      #strage
       #cdia
     end
 
@@ -22,39 +22,34 @@ class Trimming
       puts "base_path : #{@@base_path}"
     end
 
-    # 1と2でずれてる
-    # 1完成(3行以上は未対応)
-    # 2完成(3行以上は未対応)
+    # 個別対応: { 1: (6,31,40,63,72,80), 2: (15,37,39,89) }
     def security
-      category = "Security"
       (1..2).each do |count|
         i = 1
-        Dir.glob(input_path(category, count)) do |input|
+        Dir.glob(input_path("Security", count)) do |input|
           size = if count == 1
                    '755x70+20+145'
                  elsif count == 2
                    if i < 15
                      '755x70+20+160'
                    elsif i >= 15 && i < 37
-                     '755x70+20+140'
+                     '755x70+25+140'
                    else #i >= 37
                      '755x70+25+125'
                    end
                  end
-          output = output_path(category, count, i)
+          puts output = output_path(1, count, i)
           trimming(input, output, size)
           i = i + 1
         end
       end
     end
 
-    # 完成
-    def strage
-      category = "Strage"
+    def cloud
       (1..2).each do |count|
         i = 1
-        Dir.glob(input_path(category, count)) do |input|
-          output = output_path(category, count, i)
+        Dir.glob(input_path("Cloud", count)) do |input|
+          output = output_path(2, count, i)
           size = '755x75+15+120'
           trimming(input, output, size)
           i = i + 1
@@ -63,11 +58,10 @@ class Trimming
     end
 
     def mobility
-      category = "Mobility"
       (1..2).each do |count|
         i = 1
-        Dir.glob(input_path(category, count)) do |input|
-          output = output_path(category, count, i)
+        Dir.glob(input_path("Mobility", count)) do |input|
+          output = output_path(3, count, i)
           size = '755x75+15+120'
           trimming(input, output, size)
           i = i + 1
@@ -75,12 +69,12 @@ class Trimming
       end
     end
 
-    def cloud
-      category = "Cloud"
+    # 完成
+    def strage
       (1..2).each do |count|
         i = 1
-        Dir.glob(input_path(category, count)) do |input|
-          output = output_path(category, count, i)
+        Dir.glob(input_path("Strage", count)) do |input|
+          output = output_path(4, count, i)
           size = '755x75+15+120'
           trimming(input, output, size)
           i = i + 1
@@ -89,11 +83,10 @@ class Trimming
     end
 
     def cdia
-      category = "CDIA"
       (1..2).each do |count|
         i = 1
-        Dir.glob(input_path(category, count)) do |input|
-          output = output_path(category, count, i)
+        Dir.glob(input_path("CDIA", count)) do |input|
+          output = output_path(5, count, i)
           size = '755x75+15+120'
           trimming(input, output, size)
           i = i + 1
@@ -112,8 +105,9 @@ class Trimming
       "#{@@base_path}/模試/#{category}/#{count}/問題/*.png"
     end
 
-    def output_path(category, count, i)
-      "#{@@base_path}/trimming/#{category}/#{count}/問題/#{i}.png"
+    def output_path(category_id, exam_no, i)
+      #"#{@@base_path}/trimming/#{category_id}/#{exam_no}/問題/#{i}.png"
+      "/Users/ozaki/Applications/rails_apps/runners_shikaku/public/images/questions/categories/#{category_id}/exams/#{exam_no}/choices/#{i}.png"
     end
   end
 end
