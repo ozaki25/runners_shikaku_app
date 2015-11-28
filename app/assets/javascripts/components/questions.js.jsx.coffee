@@ -1,4 +1,4 @@
-@Question = React.createClass
+@QuestionView = React.createClass
   getInitialState: ->
     return {
       question: @props.question
@@ -10,7 +10,7 @@
       `<div className="panel panel-info">
         <QuestionHeader headerMessage={headerMessage} />
         <div className="panel-body">
-          <img src={this.state.question.question_path} alt={this.state.question.question_path} />
+          <QuestionBody question={this.state.question} />
         </div>
       </div>`
     )
@@ -21,5 +21,25 @@
     return(
       `<div className="panel-heading">
         <strong>{headerMessage}</strong>
+      </div>`
+    )
+
+@QuestionBody = React.createClass
+  render: ->
+    return(
+      `<div>
+        <Question question={this.props.question} />
+      </div>`
+    )
+
+@Question = React.createClass
+  render: ->
+    question = @props.question
+    questionNo = question.num_of_exam
+    questionPath = question.question_path
+    return(
+      `<div>
+        <h4>問{questionNo}</h4>
+        <img src={questionPath} alt={questionPath} />
       </div>`
     )
