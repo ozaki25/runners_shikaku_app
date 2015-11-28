@@ -107,7 +107,7 @@ class Trimming
 
     def output_path(category_id, exam_no, i)
       #"#{@@base_path}/trimming/#{category_id}/#{exam_no}/問題/#{i}.png"
-      "/Users/ozaki/Applications/rails_apps/runners_shikaku/public/images/questions/categories/#{category_id}/exams/#{exam_no}/choices/#{i}.png"
+      "/Users/ozaki/Applications/rails_apps/runners_shikaku/public/images/categories/#{category_id}/exams/#{exam_no}/questions/#{i}.png"
     end
   end
 end
