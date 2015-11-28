@@ -13,7 +13,7 @@ class Seeds
 
     def create_exams(category)
       (1..2).each do |exam_no|
-        exam = category.exams.create!(time_of_category: category.id)
+        exam = category.exams.create!(time_of_category: exam_no)
         create_questions(exam, "/images/categories/#{category.id}/exams/#{exam_no}")
       end
     end
