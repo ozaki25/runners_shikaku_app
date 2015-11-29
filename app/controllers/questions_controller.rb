@@ -1,6 +1,11 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: %i(show edit update destroy)
+  before_action :set_question, only: %i(next show edit update destroy)
   before_action :set_exam
+
+  def next
+    next_question = @exam.questions.where(num_of_exam: @question.num_of_exam + 1).first
+    render json: { question: next_question}
+  end
 
   def index
     @questions = @exam.questions
@@ -40,7 +45,7 @@ class QuestionsController < ApplicationController
 
   private
   def set_question
-    @question = Question.find(params[:id])
+    @question = Question.find(params[:id] || params[:question_id])
   end
 
   def set_exam

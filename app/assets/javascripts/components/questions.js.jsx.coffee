@@ -1,6 +1,7 @@
 @QuestionView = React.createClass
   getInitialState: ->
     return {
+      exam: @props.exam
       question: @props.question
       classification: @props.classification
       mode: 'question'
@@ -8,26 +9,26 @@
     }
   handleAnswer: (answer)->
     @setState mode: 'answer', result: @state.question.collect_no == answer.answer
-  nextQuestion: (answer)->
-    answre = answer
-    url = "/"
+  toNext: ->
+    console.log 'Ajax start'
+    url = "/exams/#{@state.exam.id}/questions/#{@state.question.id}/next"
     $.ajax
       context: @
       url: url
       dataType: 'json'
-      type: 'POST'
-      data: {answer: answer}
-    .done ->
-      console.log 'success!'
+      type: 'GET'
+    .done (data) ->
+      console.log 'Ajax success!'
+      @setState question: data.question, mode: 'question', result: ''
     .fail ->
-      console.log 'failed!'
+      console.log 'Ajax failed!'
   render: ->
     headerMessage = "#{@state.classification.category} 第#{@state.classification.timeOfCategory}回"
     return(
       `<div className="panel panel-info">
         <QuestionHeader headerMessage={headerMessage} />
         <div className="panel-body">
-          <QuestionBody question={this.state.question} mode={this.state.mode} result={this.state.result} onAnswer={this.handleAnswer} />
+          <QuestionBody question={this.state.question} mode={this.state.mode} result={this.state.result} onAnswer={this.handleAnswer} toNext={this.toNext} />
         </div>
       </div>`
     )
@@ -50,7 +51,7 @@
       `<div>
         {this.resultView()}
         <Question question={question} />
-        <Choice question={question} mode={this.props.mode} onAnswer={this.props.onAnswer} />
+        <Choice question={question} mode={this.props.mode} onAnswer={this.props.onAnswer} toNext={this.props.toNext} />
       </div>`
     )
 
@@ -84,11 +85,16 @@
       `<div>
         <h4>解答</h4>
         <img src={choicePath} alt={choicePath} />
-        <AnswerForm mode={this.props.mode} collectNo={question.collect_no} onAnswer={this.props.onAnswer} />
+        <AnswerForm mode={this.props.mode} collectNo={question.collect_no} onAnswer={this.props.onAnswer} toNext={this.props.toNext} />
       </div>`
     )
 
 @AnswerForm = React.createClass
+  toNext: ->
+    console.log 'toNext'
+    @props.toNext()
+  nextButton: ->
+    return `<button onClick={this.toNext} className="btn btn-link">次へ</button>` if @props.mode is 'answer'
   render: ->
     mode = @props.mode
     collectNo = @props.collectNo
@@ -99,13 +105,15 @@
         {valueList.map(function(n, i) {
           return <AnswerButton key={i} value={n} mode={mode} collectNo={collectNo} onAnswer={onAnswer} />
         })}
+        {this.nextButton()}
       </div>`
     )
 
 @AnswerButton = React.createClass
-  onClick: (answer)->
+  onAnswer: (answer)->
+    console.log 'onAnswer'
     @props.onAnswer({answer})
   render: ->
     value = @props.value
     className = if @props.mode is 'answer' && value is @props.collectNo then 'btn btn-primary btn-answer' else 'btn btn-info btn-answer'
-    return `<button a="toge" onClick={this.onClick.bind(this, value)} className={className}>{value}</button>`
+    return `<button a="toge" onClick={this.onAnswer.bind(this, value)} className={className}>{value}</button>`
