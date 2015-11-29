@@ -48,6 +48,6 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:num_of_exam, :question_path, :description_path, :exam)
+    params.require(:question).permit(:num_of_exam, :question_path, :choice_path, :description_path, :exam)
   end
 end
