@@ -93,7 +93,7 @@
     console.log 'toNext'
     @props.toNext()
   nextButton: ->
-    return `<button onClick={this.toNext} className="btn btn-link">次へ</button>` if @props.mode is 'answer'
+    return `<button onClick={this.toNext} className="btn btn-link btn-lg">次へ</button>` if @props.mode is 'answer'
   render: ->
     mode = @props.mode
     collectNo = @props.collectNo
