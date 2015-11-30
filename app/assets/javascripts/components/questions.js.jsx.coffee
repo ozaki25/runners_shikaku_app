@@ -116,7 +116,7 @@
   render: ->
     value = @props.value
     className = if @props.mode is 'question'
-                  'btn btn-info btn-answer'
+                  'btn btn-info btn-lg btn-answer'
                 else
-                  if value is @props.collectNo then 'btn btn-primary btn-answer' else 'btn btn-answer disabled'
+                  if value is @props.collectNo then 'btn btn-primary btn-lg btn-answer' else 'btn btn-lg btn-answer disabled'
     return `<button a="toge" onClick={this.onAnswer.bind(this, value)} className={className}>{value}</button>`
