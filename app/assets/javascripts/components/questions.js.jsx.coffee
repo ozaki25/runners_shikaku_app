@@ -59,11 +59,7 @@
   render: ->
     result = @props.result
     message = if result then '◯正解' else '×不正解'
-    return(
-      `<h3>
-        <span className={result ? 'bg-success' : 'bg-danger'}>{message}</span>
-      </h3>`
-    )
+    return `<h1 className={result ? 'bg-success' : 'bg-danger'}>{message}</h1>`
 
 @Question = React.createClass
   render: ->
