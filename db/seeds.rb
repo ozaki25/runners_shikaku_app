@@ -8,7 +8,7 @@ class Seeds
     def create_categories
       %w(Security Cloud Mobility Strage CDIA).each do |name|
         category = Category.create!(name: name)
-        create_exams(category) if name == "Security"
+        create_exams(category)
       end
     end
 
@@ -59,7 +59,7 @@ class Seeds
 
     def add_answer
       answer_security.each do |exam_no, answers|
-        questions = Category.find_by(name: 'Security').exams[exam_no.to_s.to_i - 1].questions
+        questions = Category.find_by(name: 'Security').exams[exam_no.to_s.to_i + 1].questions
         answers.each do |question_no, answer|
           questions[question_no.to_s.to_i + 1].update!(collect_no: answer.to_s)
         end
