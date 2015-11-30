@@ -4,6 +4,10 @@
     - @categories.each do |category|
       %li.list-group-item
         = category.name
+        - unless category.id == 1
+          %span [準備中]
         - category.exams.each do |exam|
-          = link_to "第#{exam.time_of_category}回", exam, class: 'link_to_exam'
-    
+          - if category.id == 1
+            = link_to "第#{exam.time_of_category}回", exam, class: 'link_to_exam'
+          - else
+            = link_to "第#{exam.time_of_category}回", "#", class: 'link_to_exam'
