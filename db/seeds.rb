@@ -8,7 +8,7 @@ class Seeds
     def create_categories
       %w(Security Cloud Mobility Strage CDIA).each do |name|
         category = Category.create!(name: name)
-        create_exams(category)
+        create_exams(category) if name == "Security"
       end
     end
 
