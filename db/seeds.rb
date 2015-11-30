@@ -2,6 +2,7 @@ class Seeds
   class << self
     def excute
       create_categories
+      add_answer
     end
 
     def create_categories
@@ -29,6 +30,14 @@ class Seeds
       end
     end
 
+    def add_answer
+      questions = Category.find_by(name: 'Security').exams.first.questions
+      questions.first.update(collect_no: 'a')
+      questions.second.update(collect_no: 'd')
+      questions.third.update(collect_no: 'd')
+      questions.fourth.update(collect_no: 'a')
+      questions.fifth.update(collect_no: 'c')
+    end
   end
 end
 
