@@ -112,17 +112,22 @@
   onAnswer: (answer)->
     console.log 'onAnswer'
     @props.onAnswer({answer})
+  isCollect: ->
+    value =  @props.value
+    isCollect = false
+    @props.collectNo.split(",").map (answer) ->
+       isCollect = true if value is answer
+    return isCollect
   render: ->
     value = @props.value
     className = if @props.mode is 'question'
                   'btn btn-info btn-lg btn-answer'
                 else
-                  if value is @props.collectNo then 'btn btn-primary btn-lg btn-answer' else 'btn btn-lg btn-answer disabled'
+                  if @isCollect() then 'btn btn-primary btn-lg btn-answer' else 'btn btn-lg btn-answer disabled'
     return `<button a="toge" onClick={this.onAnswer.bind(this, value)} className={className}>{value}</button>`
 
 @Description = React.createClass
   render: ->
-    console.log 'description'
     question = @props.question
     descriptionPath = question.description_path
     return(
