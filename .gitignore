@@ -26,4 +26,4 @@ config/environments/*.local.yml
 vendor/bundle/*
 vendor/cache/*
 
-public/images/*
+#public/images/*
