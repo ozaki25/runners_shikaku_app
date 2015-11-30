@@ -45,6 +45,8 @@
 @QuestionBody = React.createClass
   resultView: ->
     return `<Result result={this.props.result} />` if @props.mode is 'answer'
+  descriptionView: ->
+    return `<Description question={this.props.question} />` if @props.mode is 'answer'
   render: ->
     question = @props.question
     return(
@@ -52,6 +54,7 @@
         {this.resultView()}
         <Question question={question} />
         <Choice question={question} mode={this.props.mode} onAnswer={this.props.onAnswer} toNext={this.props.toNext} />
+        {this.descriptionView()}
       </div>`
     )
 
@@ -116,3 +119,15 @@
                 else
                   if value is @props.collectNo then 'btn btn-primary btn-lg btn-answer' else 'btn btn-lg btn-answer disabled'
     return `<button a="toge" onClick={this.onAnswer.bind(this, value)} className={className}>{value}</button>`
+
+@Description = React.createClass
+  render: ->
+    console.log 'description'
+    question = @props.question
+    descriptionPath = question.description_path
+    return(
+      `<div>
+        <h4>解説</h4>
+        <img src={descriptionPath} alt={descriptionPath} />
+      </div>`
+    )
